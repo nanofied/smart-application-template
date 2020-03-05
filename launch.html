@@ -17,16 +17,12 @@
     <!-- FHIR Client library -->
     <script src='https://cdn.jsdelivr.net/npm/fhirclient@2.3.1/build/fhir-client.min.js'></script>
 
-    <!-- FHIR Client authorization  -->
+    <!-- SMART Application library -->
+    <script src='./src/js/app.js'></script>
+
+    <!-- SMART Application authorization  -->
     <script>
-      FHIR.oauth2.authorize({
-          'clientId': 'faf44bec-04fb-47aa-8d31-8dfe3eff1720',
-          'scope': 'patient/*.read launch profile openid online_access',
-          'redirectUri': 'https://nanofied.github.io/smart-application-template/app.html'
-        })
-        .catch(function(e) {
-          console.error(e);
-        });
+      smartApp.authorizeApplication();
     </script>
   </body>
 </html>
