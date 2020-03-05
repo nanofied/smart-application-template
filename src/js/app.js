@@ -3,6 +3,7 @@
 
   smartApp.extractData = function(client) {
     var patient = client.request('Patient');
+    console.log(patient);
   };
 
   smartApp.renderHTML = function() {

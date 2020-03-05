@@ -20,10 +20,13 @@
     <!-- FHIR Client authorization  -->
     <script>
       FHIR.oauth2.authorize({
-        'clientId': '',
-        'scope': 'patient/*.read launch profile openid online_access',
-        'redirectUri': 'https://nanofied.github.io/smart-application-template/app.html'
-      });
+          'clientId': '',
+          'scope': 'patient/*.read launch profile openid online_access',
+          'redirectUri': 'https://nanofied.github.io/smart-application-template/app.html'
+        })
+        .catch(function(e) {
+          console.error(e);
+        });
     </script>
   </body>
 </html>

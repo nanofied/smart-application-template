@@ -20,9 +20,15 @@
     <!-- FHIR Client ready  -->
     <script>
       FHIR.oauth2.ready()
-        .then(smartApp.extractData(client))
-        .then(console.log)
-        .catch(console.error);
+        .then(function(c) {
+          smartApp.extractData(c);
+        })
+        .then(function(l) {
+          console.log(l);
+        })
+        .catch(function(e) {
+          console.error(e);
+        });
     </script>
   </body>
 </html>
