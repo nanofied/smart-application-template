@@ -30,6 +30,8 @@
 
   smartApp.extractData = function(client) {
     console.log(client);
+    var patient = client.request("Patient"));
+    console.log(patient);
   };
 
   smartApp.renderHTML = function(data) {
