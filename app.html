@@ -20,19 +20,9 @@
     <!-- SMART Application library -->
     <script src='./src/js/app.js'></script>
 
-    <!-- FHIR Client ready  -->
+    <!-- SMART Application ready  -->
     <script>
-      FHIR.oauth2.ready()
-        .then(
-          function(fulfillment) {
-            console.log(fulfillment);
-          },
-          function(rejection) {
-            console.log(rejection);
-          })
-        .catch(function(reason) {
-          console.error(reason);
-        });
+      smartApp.onReady();
     </script>
   </body>
 </html>
