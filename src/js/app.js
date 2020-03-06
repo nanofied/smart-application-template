@@ -3,7 +3,7 @@
 
   smartApp.config = {
     clientId: 'faf44bec-04fb-47aa-8d31-8dfe3eff1720',
-    scope: 'patient/*.read launch profile openid online_access',
+    scope: 'patient/*.read',
     redirectUri: 'https://nanofied.github.io/smart-application-template/app.html'
   };
 
@@ -18,25 +18,24 @@
         scope: smartApp.config.scope,
         redirectUri: smartApp.config.redirectUri
       })
-      .catch(function(reason) {
-        console.error(reason);
-      });
+      .catch(console.error);
   };
 
-  smartApp.onReady = function() {
+  smartApp.startApplication = function() {
+    console.log('Starting SMART application');
     FHIR.oauth2.ready()
       .then(function(client) {
+        console.log('Passing client');
+        console.log(client);
         smartApp.extractData(client);
       })
-      .catch(function(reason) {
-        console.error(reason);
-      });
+      .catch(console.error);
   };
 
   smartApp.extractData = function(client) {
-    console.log(client);
     client.patient.read()
       .then(function(patient) {
+        console.log('Extracting patient');
         console.log(patient);
         smartApp.data.patient.id = patient.id;
         smartApp.data.patient.firstName = patient.name[0].given[0];
@@ -45,12 +44,11 @@
         smartApp.data.patient.gender = patient.gender;
         smartApp.renderHTML();
       })
-      .catch(function(reason) {
-        console.error(reason);
-      });
+      .catch(console.error);
   };
 
   smartApp.renderHTML = function() {
+    console.log('Rendering HTML');
     console.log(smartApp.data);
   };
 
