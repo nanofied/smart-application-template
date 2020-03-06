@@ -3,7 +3,7 @@
 
   smartApp.config = {
     clientId: 'faf44bec-04fb-47aa-8d31-8dfe3eff1720',
-    scope: 'launch online_access patient/*.read',
+    scope: 'patient/*.read launch',
     redirectUri: 'https://nanofied.github.io/smart-application-template/app.html'
   };
 
