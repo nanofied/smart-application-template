@@ -55,6 +55,11 @@
             console.log('Extracting encounter');
             console.log(encounter);
             smartApp.data.encounter.id = encounter.id;
+            smartApp.data.encounter.class = encounter.class;
+            smartApp.data.encounter.status = encounter.status;
+            smartApp.data.encounter.type = encounter.type[0].text;
+            smartApp.data.encounter.start = encounter.period.start;
+            smartApp.data.encounter.end = encounter.period.end;
             // Render HTML
             smartApp.renderHTML();
           })
