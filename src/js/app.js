@@ -3,7 +3,7 @@
 
   smartApp.config = {
     clientId: 'faf44bec-04fb-47aa-8d31-8dfe3eff1720',
-    scope: 'patient/*.read launch'
+    scope: 'launch openid fhirUser patient/*.read'
   };
 
   smartApp.data = {
