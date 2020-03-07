@@ -12,13 +12,22 @@
   };
 
   smartApp.authorizeApplication = function() {
-    // Authorize FHIR client
-    FHIR.oauth2.authorize({
-        clientId: smartApp.config.clientId,
-        scope: smartApp.config.scope,
-        redirectUri: smartApp.config.redirectUri
-      })
-      .catch(smartApp.handleError);
+    // Check for valid EHR launch
+    var url = new URL(location.href);
+    if (!url.searchParams.has("launch") || !url.searchParams.has("iss")) {
+      url.searchParams.set("launch", "eyJhIjoiMSIsImciOiIxIn0");
+      url.searchParams.set("iss", "https://launch.smarthealthit.org/v/r2/fhir");
+      var appContent = document.getElementById('appContent');
+      appContent.innerHTML = '<a href="' + url.href + '">Click here to simulate EHR launch</a>';
+    }
+    else {
+      // Authorize FHIR client
+      FHIR.oauth2.authorize({
+          clientId: smartApp.config.clientId,
+          scope: smartApp.config.scope
+        })
+        .catch(smartApp.handleError);
+    }
   };
 
   smartApp.startApplication = function() {
