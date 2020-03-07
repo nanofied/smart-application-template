@@ -19,7 +19,7 @@
         scope: smartApp.config.scope,
         redirectUri: smartApp.config.redirectUri
       })
-      .catch(console.error);
+      .catch(smartApp.handleError);
   };
 
   smartApp.startApplication = function() {
@@ -32,7 +32,7 @@
         // Extract data
         smartApp.extractData(client);
       })
-      .catch(console.error);
+      .catch(smartApp.handleError);
   };
 
   smartApp.extractData = function(client) {
@@ -63,14 +63,25 @@
             // Render HTML
             smartApp.renderHTML();
           })
-          .catch(console.error);
+          .catch(smartApp.handleError);
       })
-      .catch(console.error);
+      .catch(smartApp.handleError);
   };
 
   smartApp.renderHTML = function() {
     console.log('Rendering HTML');
     console.log(smartApp.data);
+    var appContent = document.getElementById('appContent');
+    appContent.innerHTML = '<pre><code></code></pre>';
+    appContent.getElementsByTagName('code')[0].textContent = JSON.stringify(smartApp.data,null,2);
+  };
+
+  smartApp.handleError = function(error) {
+    console.log('Application error');
+    console.error(error);
+    var appContent = document.getElementById('appContent');
+    appContent.innerHTML = '<pre><code></code></pre>';
+    appContent.getElementsByTagName('code')[0].textContent = JSON.stringify(error,Object.getOwnPropertyNames(error),2);
   };
 
 })(window);
